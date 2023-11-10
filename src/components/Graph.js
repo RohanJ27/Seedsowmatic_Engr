@@ -10,11 +10,11 @@ function Graph() {
       const myChart = new Chart(chartRef.current, {
         type: 'line',
         data: {
-          labels: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+          labels: ['Start'],
           datasets: [{
-            label: 'Sales',
+            label: 'Seeds',
             responsive: true,
-            data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+            data: [0],
             borderWidth: 1,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -53,9 +53,8 @@ function Graph() {
     myChart.update();
 }
 
-
   return (
-    <div className="App">
+    <div className="App w-50">
       <canvas ref={chartRef} className=""></canvas>
       <button onClick={addData}>Add Data</button>
     </div>

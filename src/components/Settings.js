@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-function Setting() {
+function Settings() {
     const [power1, setPower1] = useState('');
     const [power2, setPower2] = useState('');
     const [power3, setPower3] = useState('');
@@ -43,8 +43,8 @@ function Setting() {
     };
 
     return (
-        <Form className='m-5'>
-          <Form.Group className="d-flex flex-column gap-2 w-25 pb-2" st controlId="exampleForm.ControlInput1">
+        <Form className='' style={{width: '35%'}}>
+          <Form.Group className="d-flex flex-column" st controlId="exampleForm.ControlInput1">
                 <Form.Label>Power 1</Form.Label>
                 <Form.Control
                     type="number"
@@ -73,4 +73,4 @@ function Setting() {
     };
     
 
-export default Setting;
+export default Settings;
