@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-function Settings() {
+function Settings({setIsPlanting}) {
     const [power1, setPower1] = useState('');
     const [power2, setPower2] = useState('');
     const [power3, setPower3] = useState('');
+
+
+    const handleEnd = (event) => {
+        event.preventDefault();
+        setIsPlanting(false);
+        
+    }
 
      // Function to handle form submission
      const handleSubmit = async (event) => {
@@ -35,6 +42,8 @@ function Settings() {
     
             const data = await response.text();
             console.log('Server response:', data);
+            setIsPlanting(true);
+
             // Perform actions with the server response if needed
         } catch (error) {
             console.error('There was an error!', error);
@@ -44,30 +53,31 @@ function Settings() {
 
     return (
         <Form className='' style={{width: '35%'}}>
+
           <Form.Group className="d-flex flex-column" st controlId="exampleForm.ControlInput1">
-                <Form.Label>Power 1</Form.Label>
+                <Form.Label>Total Seeds to Plant</Form.Label>
                 <Form.Control
                     type="number"
-                    placeholder="0"
+                    placeholder="5"
                     value={power1}
                     onChange={(e) => setPower1(e.target.value)}
                 />
-                <Form.Label>Power 2</Form.Label>
+                <Form.Label>Distance between each seed (feet)</Form.Label>
                 <Form.Control
-                    type="number"
-                    placeholder="0"
+                    placeholder="1"
                     value={power2}
                     onChange={(e) => setPower2(e.target.value)}
                 />
-                <Form.Label>Power 3</Form.Label>
+                <Form.Label>Power</Form.Label>
                 <Form.Control
                     type="number"
-                    placeholder="0"
+                    placeholder="1-5"
                     value={power3}
                     onChange={(e) => setPower3(e.target.value)}
                 />
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={handleSubmit}> Submit</Button>
+          <Button className='mt-2' variant="primary" type="submit" onClick={handleSubmit}> Start!</Button>
+          <Button className='mt-2' variant="primary" type="submit" onClick={handleEnd}> End!</Button>
         </Form>
       );
     };
