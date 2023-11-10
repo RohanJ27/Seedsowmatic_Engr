@@ -17,7 +17,7 @@ function Setting() {
 
         // Add your logic to use the form data
         try {
-            const response = await fetch('http://localhost:3000/run-python', {
+            const response = await fetch('http://localhost:5000/run-python', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
