@@ -17,7 +17,7 @@ function Settings() {
 
         // Add your logic to use the form data
         try {
-            const response = await fetch('http://localhost:3000/run-python', {
+            const response = await fetch('http://localhost:5000/run-python', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ function Settings() {
     };
 
     return (
-        <Form className='m-5'>
-          <Form.Group className="d-flex flex-column gap-2 w-25 pb-2" st controlId="exampleForm.ControlInput1">
+        <Form className='' style={{width: '35%'}}>
+          <Form.Group className="d-flex flex-column" st controlId="exampleForm.ControlInput1">
                 <Form.Label>Power 1</Form.Label>
                 <Form.Control
                     type="number"

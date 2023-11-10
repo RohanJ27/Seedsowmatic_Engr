@@ -3,7 +3,7 @@ const { exec } = require('child_process');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
@@ -12,7 +12,7 @@ app.listen(port, () => {
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3001"); // Allow only a specific origin
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Allow only a specific origin
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
@@ -20,6 +20,8 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+
 
 // test path to run python script
 app.post('/run-python', (req, res) => {
