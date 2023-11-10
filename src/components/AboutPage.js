@@ -3,13 +3,14 @@ import Header from './Header';
 import Settings from './Settings';
 import About from './About';
 
-function HomePage() {
+function AboutPage() {
   return (
     <div>
         <Header />
-        <Settings />
+      <About />
+
     </div>
   );
 }
 
-export default HomePage;
+export default AboutPage;

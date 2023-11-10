@@ -1,0 +1,20 @@
+[
+    {
+      "distanceBetweenSeeds": 1.5,
+      "totalDistance": 10,
+      "seedsToPlant": 20,
+      "power": 5
+    },
+    {
+      "distanceBetweenSeeds": 1.5,
+      "totalDistance": 10,
+      "seedsToPlant": 20,
+      "power": 5
+    },
+    {
+      "distanceBetweenSeeds": 1.5,
+      "totalDistance": 10,
+      "seedsToPlant": 20,
+      "power": 5
+    }
+]

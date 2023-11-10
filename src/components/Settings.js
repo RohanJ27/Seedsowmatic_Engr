@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
-function Setting() {
+function Settings() {
     const [power1, setPower1] = useState('');
     const [power2, setPower2] = useState('');
     const [power3, setPower3] = useState('');
@@ -73,4 +73,4 @@ function Setting() {
     };
     
 
-export default Setting;
+export default Settings;

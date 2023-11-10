@@ -38,4 +38,20 @@ app.post('/run-python', (req, res) => {
   });
 });
 
+function appendExampleSettings(settings) {
+  // Check if settings.json already exists, and read its content if it does
+  let existingSettings = [];
+  if (fs.existsSync('settings.json')) {
+    const existingData = fs.readFileSync('settings.json');
+    existingSettings = JSON.parse(existingData);
+  }
 
+  // Append the example settings array to the existing settings array
+  existingSettings = existingSettings.concat(settings);
+
+  // Save the updated array to settings.json
+  const jsonData = JSON.stringify(existingSettings, null, 2);
+  fs.writeFileSync('settings.json', jsonData);
+
+  console.log('Example settings appended to settings.json');
+}
