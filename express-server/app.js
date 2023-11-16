@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const { exec } = require('child_process');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 
 const app = express();
-const port = 3000;
+const port = 5000;
+app.use(cors());
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
@@ -12,7 +15,7 @@ app.listen(port, () => {
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3001"); // Allow only a specific origin
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // Allow only a specific origin
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
   });
@@ -20,6 +23,23 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.post('/update-db', (req, res) => {
+    console.log(   req.body)
+    const settings = req.body;
+    appendExampleSettings(settings);
+    res.send('Settings added to database.json');
+});
+
+app.get('/poll-seed', (req, res) => {
+    let seeds = [];
+  if (fs.existsSync('seeds.json')) {
+    const existingData = fs.readFileSync('seeds.json');
+    seeds = JSON.parse(existingData);
+  }
+    res.send(JSON.stringify(seeds));
+})
+
 
 // test path to run python script
 app.post('/run-python', (req, res) => {
@@ -41,8 +61,8 @@ app.post('/run-python', (req, res) => {
 function appendExampleSettings(settings) {
   // Check if settings.json already exists, and read its content if it does
   let existingSettings = [];
-  if (fs.existsSync('settings.json')) {
-    const existingData = fs.readFileSync('settings.json');
+  if (fs.existsSync('database.json')) {
+    const existingData = fs.readFileSync('database.json');
     existingSettings = JSON.parse(existingData);
   }
 
@@ -51,7 +71,7 @@ function appendExampleSettings(settings) {
 
   // Save the updated array to settings.json
   const jsonData = JSON.stringify(existingSettings, null, 2);
-  fs.writeFileSync('settings.json', jsonData);
+  fs.writeFileSync('database.json', jsonData);
 
   console.log('Example settings appended to settings.json');
 }

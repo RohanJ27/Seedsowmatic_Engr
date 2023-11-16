@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -27,13 +28,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+import HistoryPage from './components/HistoryPage';
+
 
 function App() {
+
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/history" element={<HistoryPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
