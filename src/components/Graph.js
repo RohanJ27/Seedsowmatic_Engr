@@ -66,7 +66,7 @@ function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels}) {
   }
 
   let pollSeed = async () => {
-    const response = await fetch('http://localhost:5000/poll-seed')
+    const response = await fetch('http://localhost:5000/get-seed')
     const data = await response.json();
     
     if (data.length > seedTracker) {

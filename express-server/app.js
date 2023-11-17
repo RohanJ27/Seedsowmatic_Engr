@@ -3,14 +3,12 @@ const cors = require('cors');
 const { exec } = require('child_process');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const OpenAI = require('openai');
+require("dotenv").config();
 
 const app = express();
 const port = 5000;
 app.use(cors());
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
 
 app.use(bodyParser.json());
 
@@ -20,8 +18,29 @@ app.use((req, res, next) => {
     next();
   });
 
+const openai = new OpenAI({apiKey: process.env.OPEN_AI_KEY});
+
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
+});
+
+app.get('/make-chat', async (req, res) => {
+    const completion = await openai.chat.completions.create({
+        messages: [
+          { role: "system", 
+            content: "You are a gardening assistant who will answer questions regarding gardening only with a max of 3 sentences. If asked any unrelated question, respond with uncertainty" 
+          },
+          {
+            role: "user",
+            content: "How can I plant sunflower seeds properly?"
+          }
+        ],
+        model: "gpt-3.5-turbo",
+      });
+    
+      console.log(completion.choices);
 });
 
 app.post('/update-db', (req, res) => {
@@ -31,7 +50,7 @@ app.post('/update-db', (req, res) => {
     res.send('Settings added to database.json');
 });
 
-app.get('/poll-seed', (req, res) => {
+app.get('/get-seed', (req, res) => {
     let seeds = [];
   if (fs.existsSync('seeds.json')) {
     const existingData = fs.readFileSync('seeds.json');
@@ -57,6 +76,11 @@ app.post('/run-python', (req, res) => {
     res.send(`Script output: ${stdout}`);
   });
 });
+
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+  });
+  
 
 function appendExampleSettings(settings) {
   // Check if settings.json already exists, and read its content if it does

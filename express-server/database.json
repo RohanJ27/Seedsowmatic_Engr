@@ -1,9 +1,12 @@
 [
     {
-      "distanceBetweenSeeds": 1.5,
-      "totalDistance": 10,
-      "seedsToPlant": 20,
-      "power": 5,
-      "seedsPlanted": 5
+      "settings": {
+        "distanceBetweenSeeds": 1.5,
+        "totalDistance": 10,
+        "seedsToPlant": 20,
+        "power": 5
+      },
+      "seedsPlanted": 5,
+      "date": "2019-01-01T00:00:00.000Z"
     }
 ]
