@@ -85,7 +85,9 @@ function HistoryPage() {
             }
           />
         </div>
-      </div>
+        
+        
+
     </div>
   );
 }

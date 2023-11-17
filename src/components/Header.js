@@ -12,9 +12,8 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex justify-content-end">
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="/">Home</Nav.Link>
-              <Nav.Link style={{ marginRight: '50px', marginLeft: '50px' }} href="/history">History</Nav.Link>
+              <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="history">History</Nav.Link>
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="about">About</Nav.Link>
-              <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="signup">Sign Up</Nav.Link>
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="login">Login</Nav.Link>
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="chats">Chats</Nav.Link>
               {/* Add more navigation links as needed */}
