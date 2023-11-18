@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 
-function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels}) {
+function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels, setData, setLabels}) {
   const chartRef = useRef(null);
   const [myChart, setMyChart] = useState(null);
   let seedTracker = 0;
@@ -68,9 +68,10 @@ function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels}) {
   let pollSeed = async () => {
     const response = await fetch('http://localhost:5000/get-seed')
     const data = await response.json();
+
+    console.log(data)
     
     if (data.length > seedTracker) {
-      //setSeedTracker(data.length);
       addData();
     }
   }
@@ -78,8 +79,8 @@ function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels}) {
   useEffect(() => {
     if (isPlanting) {
       const interval = setInterval(() => {
-        //pollSeed();
-        addData();
+        pollSeed();
+        //addData();
       }, 4000);
       return () => clearInterval(interval);
     }
@@ -94,10 +95,15 @@ function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels}) {
     const newData = seedTracker + 1; // Example data, can be replaced with any value
     seedTracker += 1
 
+
     myChart.data.labels.push(formattedTime);
     myChart.data.datasets.forEach((dataset) => {
         dataset.data.push(newData);
     });
+
+    setData(myChart.data.datasets[0].data);
+    setLabels(myChart.data.labels);
+
     myChart.update();
 }
 

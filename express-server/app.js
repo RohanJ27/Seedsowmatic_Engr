@@ -3,7 +3,6 @@ const cors = require('cors');
 const { exec } = require('child_process');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-const OpenAI = require('openai');
 require("dotenv").config();
 
 const app = express();
@@ -18,29 +17,8 @@ app.use((req, res, next) => {
     next();
   });
 
-const openai = new OpenAI({apiKey: process.env.OPEN_AI_KEY});
-
-
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
-});
-
-app.get('/make-chat', async (req, res) => {
-    const completion = await openai.chat.completions.create({
-        messages: [
-          { role: "system", 
-            content: "You are a gardening assistant who will answer questions regarding gardening only with a max of 3 sentences. If asked any unrelated question, respond with uncertainty" 
-          },
-          {
-            role: "user",
-            content: "How can I plant sunflower seeds properly?"
-          }
-        ],
-        model: "gpt-3.5-turbo",
-      });
-    
-      console.log(completion.choices);
 });
 
 app.post('/update-db', (req, res) => {
