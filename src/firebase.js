@@ -24,4 +24,4 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
 
-export { app, db };
+export { app, db, auth };

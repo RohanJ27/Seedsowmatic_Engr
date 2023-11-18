@@ -2,7 +2,6 @@ import React from 'react';
 import Header from './Header';
 import About from './About';
 import HistoricGraph from './HistoricGraph';
-import SeedGraph from './SeedGraph';
 import Graph from './Graph';
 
 function HistoryPage() {
@@ -22,16 +21,6 @@ function HistoryPage() {
 
             </div>
         </div>
-
-        <div className="d-flex flex-column gap-5">
-            <div className='d-flex justify-content-center align-items-center gap-5'>
-                <h3>Seed Graph</h3>
-                <SeedGraph />
-            </div>
-        </div>
-        
-        
-
     </div>
   );
 }

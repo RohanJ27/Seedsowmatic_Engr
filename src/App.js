@@ -8,7 +8,6 @@ import AboutPage from './components/AboutPage';
 import Login from './components/Login';
 import Chats from './components/Chats';
 import HistoryPage from './components/HistoryPage';
-import SeedGraph from './components/SeedGraph';
 
 
 
