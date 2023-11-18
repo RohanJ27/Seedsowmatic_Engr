@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
+import { auth } from '../firebase';
 
 const Header = () => {
     return (
@@ -15,7 +16,10 @@ const Header = () => {
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="history">History</Nav.Link>
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="about">About</Nav.Link>
               <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="login">Login</Nav.Link>
-              <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="chats">Chats</Nav.Link>
+              {auth.currentUser ?
+                <Nav.Link style={{ marginRight: '20px', marginLeft: '20px' }} href="chats">Chats</Nav.Link> : <div></div>
+              
+            }
               {/* Add more navigation links as needed */}
             </Nav>
           </Navbar.Collapse>

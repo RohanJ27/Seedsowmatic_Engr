@@ -6,8 +6,8 @@ function About() {
     <div style={containerStyle}>
       <h1>About SeedSowMatic</h1>
       <p>
-        Welcome to the About Page of SeedSowMatic, our innovative
-        semi-autonomous robot designed for planting seeds. Explore the
+        Welcome to SeedSowMatic, our innovative
+        robot designed for planting seeds. Explore the
         capabilities and features of our cutting-edge technology.
       </p>
 
@@ -15,25 +15,24 @@ function About() {
         <h2>Key Features</h2>
         <ul>
           <li>
-            <strong>Autonomous Navigation:</strong> Our robot can navigate across
-            dirt terrains with ease, adapting its path based on user input.
+            <strong>Forward Navigation:</strong> Our robot can navigate forward across
+            dirt terrains, adapting its path based on user input.
           </li>
           <li>
-            <strong>Precision Planting:</strong> Equipped with advanced digging
-            and planting mechanisms, ensuring accurate and efficient seed
+            <strong>Precision Planting:</strong> Equipped with a powerful Servo, our robot uses a shovel for accurate and efficient seed
             placement.
           </li>
           <li>
             <strong>Customizable Settings:</strong> Users can control the
             distance between each planted seed, the total travel distance, and
-            the number of seeds to be planted via the companion app.
+            the number of seeds to be planted via the SeedSowMatic website.
           </li>
         </ul>
       </section>
 
       <section style={{...imageSectionStyle, padding: '20px'}}>
         <h2>SeedSowMatic Drafts</h2>
-        <p>Explore the evolution of our robot through various drafts:</p>
+        <p>Explore the early stages of SeedSowMatic through our various drafts:</p>
         <div style={imageContainerStyle}>
           <img
             src="https://cdn.discordapp.com/attachments/898747450943234068/1172492035677225011/SSM_Draft_1.png?ex=6560834d&is=654e0e4d&hm=2aece0e67eb3438dfc14981cbff8899d16265d4eb1cb7f426e7d1d82d38e412d&"
@@ -55,7 +54,7 @@ function About() {
 
       <section style={{...imageSectionStyle, padding: '20px'}}>
         <h2>SeedSowMatic Assembly Versions</h2>
-        <p>Explore the assembly versions of SeedSowMatic:</p>
+        <p>Explore the evolutions of SeedSowMatic through our assembly versions:</p>
         <div style={imageContainerStyle}>
           <img
             src="https://cdn.discordapp.com/attachments/898747450943234068/1172492038281891860/SSM_Assembly_v1.png?ex=6560834d&is=654e0e4d&hm=c44b8ef614d9a7ba9b7ff0072ef698ec4da9eea94e1921a9feeda64146ac9fce&"
