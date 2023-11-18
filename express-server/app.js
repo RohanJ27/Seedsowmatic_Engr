@@ -55,6 +55,16 @@ app.post('/run-python', (req, res) => {
   });
 });
 
+app.post('/run-gpt', (req, res) => {
+  exec(`python3 raspberryScripts/speech_rec.py`, (err, stdout, stderr) => {
+    if (err) {
+      // handle error
+      return res.send(`Error running script: ${stderr}`);
+    }
+    res.send(`Script output: ${stdout}`);
+  });
+})
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
   });

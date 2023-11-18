@@ -101,6 +101,7 @@ function Settings() {
                 </Form.Group>
                 <Button className='mt-2' variant="primary" type="submit" onClick={handleSubmit}> Start!</Button>
                 <Button className='mt-2' variant="primary" type="submit" onClick={handleEnd}> End!</Button>
+                
             </Form>
 
             <Graph isPlanting={isPlanting} setIsPlanting={setIsPlanting} setLabels={setLabels} setData={setData}/>

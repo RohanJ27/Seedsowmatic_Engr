@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import { collection, query, getDocs } from "firebase/firestore";
 import { db } from "../firebase";
+import { Button } from 'react-bootstrap';
 
 function Chats() {
   const [chats, setChats] = useState([]);
@@ -31,6 +32,32 @@ function Chats() {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Add your logic to use the form data
+    try {
+        const response = await fetch('http://localhost:5000/run-gpt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.text();
+        console.log('Server response:', data);
+
+        // Perform actions with the server response if needed
+    } catch (error) {
+        console.error('There was an error!', error);
+    }
+    
+};
+
   useEffect(() => {
     // Call the test function when the component mounts
     test();
@@ -53,6 +80,7 @@ function Chats() {
         </div>
       </div>
       {/* Remove the button since the function is invoked when the component mounts */}
+      <Button className='' type="submit" onClick={handleSubmit}></Button>
     </div>
   );
 }
