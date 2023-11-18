@@ -1,5 +1,5 @@
 import { app } from './firebase';
-import './App.css';
+
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -8,13 +8,13 @@ import AboutPage from './components/AboutPage';
 import Login from './components/Login';
 import Chats from './components/Chats';
 import HistoryPage from './components/HistoryPage';
+import SeedGraph from './components/SeedGraph';
 
 
 
 
 
 function App() {
-
   return (
     <div className="App">
       <Router>
