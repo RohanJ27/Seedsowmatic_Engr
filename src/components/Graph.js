@@ -81,7 +81,7 @@ function Graph({isPlanting, setIsPlanting, defaultData, defaultLabels, setData, 
       const interval = setInterval(() => {
         pollSeed();
         //addData();
-      }, 4000);
+      }, 2000);
       return () => clearInterval(interval);
     }
       
