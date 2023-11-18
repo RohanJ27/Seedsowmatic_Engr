@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from './Header';
 import About from './About';
 import HistoricGraph from './HistoricGraph';
-import SeedGraph from './SeedGraph';
 import Graph from './Graph';
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";

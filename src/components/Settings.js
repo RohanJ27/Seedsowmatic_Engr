@@ -1,16 +1,38 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import Graph from './Graph';
+import { db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore"; 
 
-function Settings({setIsPlanting}) {
+
+function Settings() {
     const [power1, setPower1] = useState('');
     const [power2, setPower2] = useState('');
     const [power3, setPower3] = useState('');
+    const [labels, setLabels] = useState(['Start']);
+    const [data, setData] = useState([0]);
 
+    const [isPlanting, setIsPlanting] = useState(false);
 
-    const handleEnd = (event) => {
+    function getCurrentDateFormatted() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yy = today.getFullYear().toString().substring(-2);
+        yy = yy.slice(-2);
+    
+        return mm + '-' + dd + '-' + yy;
+    }
+
+    const handleEnd = async (event) => {
         event.preventDefault();
+        console.log(data, labels)
         setIsPlanting(false);
         
+        await setDoc(doc(db, "seeds", getCurrentDateFormatted()), {
+            seeds: data,
+            times: labels
+        })
     }
 
      // Function to handle form submission
@@ -52,33 +74,38 @@ function Settings({setIsPlanting}) {
     };
 
     return (
-        <Form className='' style={{width: '35%'}}>
+        <div className="d-flex justify-content-between m-5">
+            <Form className='' style={{width: '35%'}}>
 
-          <Form.Group className="d-flex flex-column" st controlId="exampleForm.ControlInput1">
-                <Form.Label>Total Seeds to Plant</Form.Label>
-                <Form.Control
-                    type="number"
-                    placeholder="5"
-                    value={power1}
-                    onChange={(e) => setPower1(e.target.value)}
-                />
-                <Form.Label>Distance between each seed (feet)</Form.Label>
-                <Form.Control
-                    placeholder="1"
-                    value={power2}
-                    onChange={(e) => setPower2(e.target.value)}
-                />
-                <Form.Label>Power</Form.Label>
-                <Form.Control
-                    type="number"
-                    placeholder="1-5"
-                    value={power3}
-                    onChange={(e) => setPower3(e.target.value)}
-                />
-          </Form.Group>
-          <Button className='mt-2' variant="primary" type="submit" onClick={handleSubmit}> Start!</Button>
-          <Button className='mt-2' variant="primary" type="submit" onClick={handleEnd}> End!</Button>
-        </Form>
+                <Form.Group className="d-flex flex-column" st controlId="exampleForm.ControlInput1">
+                    <Form.Label>Total Seeds to Plant</Form.Label>
+                    <Form.Control
+                        type="number"
+                        placeholder="5"
+                        value={power1}
+                        onChange={(e) => setPower1(e.target.value)}
+                    />
+                    <Form.Label>Distance between each seed (feet)</Form.Label>
+                    <Form.Control
+                        placeholder="1"
+                        value={power2}
+                        onChange={(e) => setPower2(e.target.value)}
+                    />
+                    <Form.Label>Power</Form.Label>
+                    <Form.Control
+                        type="number"
+                        placeholder="1-5"
+                        value={power3}
+                        onChange={(e) => setPower3(e.target.value)}
+                    />
+                </Form.Group>
+                <Button className='mt-2' variant="primary" type="submit" onClick={handleSubmit}> Start!</Button>
+                <Button className='mt-2' variant="primary" type="submit" onClick={handleEnd}> End!</Button>
+            </Form>
+
+            <Graph isPlanting={isPlanting} setIsPlanting={setIsPlanting} setLabels={setLabels} setData={setData}/>
+        </div>
+        
       );
     };
     
